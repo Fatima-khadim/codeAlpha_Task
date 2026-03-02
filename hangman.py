@@ -11,7 +11,11 @@ print("Welcome to Hangman Game!")
 
 while mistakes < limit and "_" in progress:
     print("word:", " ".join(progress))
-    guess = input("Enter a letter: ").lower()
+    guess = input("Enter a letter: ").lower().strip()
+    
+    if not guess:
+        print("Please enter a letter.\n")
+        continue
 
     if guess in secret:
         for i in range(len(secret)):
@@ -21,7 +25,6 @@ while mistakes < limit and "_" in progress:
     else:
         mistakes += 1
         print("Wrong! Attempts left:", limit - mistakes, "\n")
-
 
 if "_" not in progress:
     print("You won! The word was:", secret)
